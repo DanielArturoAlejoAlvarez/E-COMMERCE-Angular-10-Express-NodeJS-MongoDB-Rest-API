@@ -1,0 +1,17 @@
+{
+  "name": "ecommerce-mean-stack-v1",
+  "version": "1.0.0",
+  "description": "Software of Application with MEAN Stack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "MongoDB",
+    "Express",
+    "Angular",
+    "NodeJS"
+  ],
+  "author": "Daniel Alejo Alvarez",
+  "license": "MIT"
+}
