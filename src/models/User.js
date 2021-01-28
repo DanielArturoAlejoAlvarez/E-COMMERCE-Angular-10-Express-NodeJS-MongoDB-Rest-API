@@ -3,7 +3,6 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const UserSchema = new Schema({
-
   displayName: {
     type: String,
     required: true
@@ -20,12 +19,7 @@ const UserSchema = new Schema({
     trim: true,
     required: true
   },
-  email: {
-    type: String,
-    unique: true,
-    required: true
-  },
-  passsword: {
+  password: {
     type: String,
     minlength: 6,
     required: true
@@ -36,15 +30,17 @@ const UserSchema = new Schema({
     required: false
   },
   role: {
-
+    type: String,
+    enum: ["SUPERADMIN","ADMIN","USER"],
+    default: "USER"
   },
   status: {
     type: Boolean,
     default: true
-  },
+  }
 },
 {
   timestamps: true
 })
 
-module.exports=mongoose.model('User', UserSchema)
+module.exports = mongoose.model('User', UserSchema)
