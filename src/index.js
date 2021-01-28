@@ -1,8 +1,9 @@
+const config = require('./config/config')
+require('./database')
 const express = require('express')
 const morgan = require('morgan')
 
 const app = express()
-const port = process.env.PORT || 3000
 
 //Middlewares
 app.use(express.json())
@@ -15,6 +16,6 @@ app.get('/', (req,res)=>{
   })
 })
 
-app.listen(port, ()=>{
-  console.log(`Server running in port: ${port}`)
+app.listen(config.port, ()=>{
+  console.log(`Server running in config.port: ${config.port}`)
 })
