@@ -20,11 +20,14 @@ export class UserComponent implements OnInit {
     status: true
   }
 
-  user: User
+  users: []
+
+
 
   constructor(private _us: UserService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.listUser()
   }
 
   addUser() {
@@ -36,6 +39,17 @@ export class UserComponent implements OnInit {
         }else{
           alert("User saved successfully!")
         }
+      },
+      err=>{
+        console.log(err)
+      })
+  }
+
+  listUser() {
+    this._us.getUsers()
+      .subscribe(data=>{
+        this.users = data
+        console.log(data)
       },
       err=>{
         console.log(err)
