@@ -28,7 +28,18 @@ export class UserComponent implements OnInit {
   }
 
   addUser() {
-    
+    console.log(this.userForm)
+    this._us.saveUser(this.userForm)
+      .subscribe(data=>{
+        if (!data.ok) {
+          alert("ERROR!!")
+        }else{
+          alert("User saved successfully!")
+        }
+      },
+      err=>{
+        console.log(err)
+      })
   }
 
 }
