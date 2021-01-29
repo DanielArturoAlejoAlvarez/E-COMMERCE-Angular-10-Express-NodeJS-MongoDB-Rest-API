@@ -75,7 +75,20 @@ CTRLS.updateUser = (req,res)=>{
 }
 
 CTRLS.deleteUser = (req,res)=>{
+  const { id,status } = req.params
+  User.findByIdAndUpdate(id, { status }, {new: true}, (err,delUser)=>{
+    if (err) {
+      return res.status(401).json({
+        ok: false,
+        err
+      })
+    }
 
+    res.status(201).json({
+      ok: true,
+      user: delUser
+    })
+  })
 }
 
 module.exports = CTRLS
