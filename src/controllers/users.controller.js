@@ -4,11 +4,13 @@ const bcrypt = require('bcrypt')
 const CTRLS = {}
 
 CTRLS.getUsers = (req,res)=>{
-  
+  User.find({}).exec((err,users)=>{
+    return res.json(users)
+  })
 }
 
 CTRLS.getUser = (req,res)=>{
-
+  
 }
 
 CTRLS.saveUser = (req,res)=>{
@@ -43,7 +45,7 @@ CTRLS.saveUser = (req,res)=>{
 }
 
 CTRLS.updateUser = (req,res)=>{
-
+  
 }
 
 CTRLS.deleteUser = (req,res)=>{
