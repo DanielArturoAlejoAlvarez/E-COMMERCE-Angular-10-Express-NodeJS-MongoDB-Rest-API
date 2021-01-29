@@ -4,7 +4,8 @@ const mongoose = require('mongoose')
 mongoose.connect(config.URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useCreateIndex: true
+  useCreateIndex: true,
+  useFindAndModify: true
 })
 
 const connection = mongoose.connection 
