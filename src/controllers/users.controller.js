@@ -10,7 +10,10 @@ CTRLS.getUsers = (req,res)=>{
 }
 
 CTRLS.getUser = (req,res)=>{
-  
+  const { id } = req.params 
+  User.findById(id).exec((err,user)=>{
+    return res.json(user)
+  })
 }
 
 CTRLS.saveUser = (req,res)=>{
