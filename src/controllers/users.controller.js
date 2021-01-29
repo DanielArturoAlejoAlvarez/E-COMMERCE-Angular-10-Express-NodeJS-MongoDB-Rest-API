@@ -48,7 +48,30 @@ CTRLS.saveUser = (req,res)=>{
 }
 
 CTRLS.updateUser = (req,res)=>{
-  
+  const { id } = req.params
+  const user = {
+    displayName: req.body.displayName,
+    email: req.body.email,
+    username: req.body.username,
+    password: bcrypt.hashSync(req.body.password, 10),
+    avatar: req.body.avatar,
+    role: req.body.role,
+    status: req.body.status
+  }
+
+  User.findByIdAndUpdate(id, user, {new: true}, (err,updUser)=>{
+    if (err) {
+      return res.status(401).json({
+        ok: false,
+        err
+      })
+    }
+
+    res.status(201).json({
+      ok: true,
+      user: updUser
+    })
+  })
 }
 
 CTRLS.deleteUser = (req,res)=>{
