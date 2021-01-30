@@ -12,6 +12,7 @@ app.use(morgan('dev'))
 
 //Routes
 app.use('/api/users', require('./routes/user.routes'))
+app.use('/api/auth', require('./routes/auth.routes'))
 
 app.get('/', (req,res)=>{
   res.json({
