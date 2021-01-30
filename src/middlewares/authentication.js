@@ -12,8 +12,12 @@ const isAuth = (req, res, next) => {
       });
     }
 
-    req.user = user;
+    req.user = user.data;
 
     next();
   });
 };
+
+module.exports = {
+  isAuth
+}
