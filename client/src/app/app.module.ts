@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
+//import { JwtModule } from '@auth0/angular-jwt'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +12,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/auth/login/login.component';
 
 import { AuthService } from './services/auth.service';
+import { LoginService } from './services/login.service';
 import { UserService } from './services/user.service';
 
 @NgModule({
@@ -25,9 +27,10 @@ import { UserService } from './services/user.service';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    //JwtModule.forRoot({})
   ],
-  providers: [AuthService,UserService],
+  providers: [AuthService,LoginService,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
