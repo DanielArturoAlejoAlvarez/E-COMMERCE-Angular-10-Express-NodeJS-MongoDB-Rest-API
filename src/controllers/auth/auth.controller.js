@@ -18,14 +18,14 @@ CTRLS.login = (req, res) => {
     if (!user) {
       return res.status(404).json({
         ok: false,
-        msg: "Email or Password invalid!",
+        msg: "Username or Password invalid!",
       });
     }
 
     if (!bcrypt.compareSync(req.body.password, user.password)) {
       return res.status(404).json({
         ok: false,
-        msg: "Email or Password invalid!",
+        msg: "Username or Password invalid!",
       });
     }
 
