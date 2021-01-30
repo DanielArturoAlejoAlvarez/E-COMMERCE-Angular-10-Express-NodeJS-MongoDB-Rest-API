@@ -8,13 +8,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserComponent } from './components/user/user.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { LoginComponent } from './components/auth/login/login.component';
+
+import { AuthService } from './services/auth.service';
 import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
-    NavbarComponent    
+    NavbarComponent,
+    LoginComponent    
   ],
   imports: [
     BrowserModule,
@@ -23,7 +27,7 @@ import { UserService } from './services/user.service';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [UserService],
+  providers: [AuthService,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
