@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
     this._ls.signIn(this.loginForm)
       .subscribe(data=>{
         if (data.ok) {
+          console.log(data)
           localStorage.setItem("token", data.token)
           this._router.navigate(['user'])
         }else {

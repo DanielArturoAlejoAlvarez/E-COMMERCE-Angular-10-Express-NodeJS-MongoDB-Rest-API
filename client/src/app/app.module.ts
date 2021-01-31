@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
-//import { JwtModule } from '@auth0/angular-jwt'
+import { JwtModule } from '@auth0/angular-jwt'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +14,7 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { AuthService } from './services/auth.service';
 import { LoginService } from './services/login.service';
 import { UserService } from './services/user.service';
+import { AuthGuard } from './shared/guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -28,9 +29,15 @@ import { UserService } from './services/user.service';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    //JwtModule.forRoot({})
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: function  tokenGetter() { 
+          return localStorage.getItem('token');
+        } 
+      }
+    })
   ],
-  providers: [AuthService,LoginService,UserService],
+  providers: [AuthService,LoginService,UserService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
