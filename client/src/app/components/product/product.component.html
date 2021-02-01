@@ -23,10 +23,18 @@
             <input type="text" name="price" [(ngModel)]="productForm.price" class="form-control" />
           </div>
         </div>
-        <div class="col-12">
+        <div class="col-8">
           <div class="form-group mb-3">
             <label for="description">Body:</label>
             <textarea name="description" [(ngModel)]="productForm.description" id="" class="form-control"></textarea>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="form-group mb-3">
+            <label for="category">Category:</label>
+            <select name="category" [(ngModel)]="productForm.category" class="form-control">
+              <option [value]="category" *ngFor="let category of categories" >{{category.name}}</option>
+            </select>
           </div>
         </div>
         <div class="col-4">
@@ -46,7 +54,7 @@
         <div class="col-4">
           <div class="form-group mb-3">
             <label for="status">STATUS:</label>
-            <select name="ststus" [(ngModel)]="productForm.status" class="form-control">
+            <select name="status" [(ngModel)]="productForm.status" class="form-control">
               <option value="true">ON</option>
               <option value="false">OFF</option>
             </select>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Product from 'src/app/models/Product';
+import { CategoryService } from 'src/app/services/category.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -21,9 +22,12 @@ export class ProductComponent implements OnInit {
 
   image: File;
 
-  constructor(private _ps: ProductService) {}
+  categories: []
+
+  constructor(private _ps: ProductService, private _cs: CategoryService) {}
 
   ngOnInit(): void {
+    this.listCategory()
     this.listProduct();
   }
 
@@ -48,4 +52,16 @@ export class ProductComponent implements OnInit {
   }
 
   listProduct() {}
+
+
+  listCategory() {
+    this._cs.getCategories()
+      .subscribe(data=>{
+        this.categories = data
+        console.log(data)
+      },
+      err=>{
+        console.log(err)
+      })
+  }
 }

@@ -15,6 +15,7 @@ app.use(fileUpload())
 //Routes
 app.use("/api/users", require("./routes/user.routes"));
 app.use("/api/auth", require("./routes/auth.routes"));
+app.use("/api/categories", require("./routes/category.routes"));
 
 app.get("/", (req, res) => {
   res.json({

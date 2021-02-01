@@ -17,6 +17,7 @@ import { LoginService } from './services/login.service';
 import { ProductService } from './services/product.service';
 import { UserService } from './services/user.service';
 import { AuthGuard } from './shared/guards/auth.guard';
+import { CategoryService } from './services/category.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { AuthGuard } from './shared/guards/auth.guard';
       }
     })
   ],
-  providers: [AuthService,LoginService,ProductService,UserService,AuthGuard],
+  providers: [AuthService,LoginService,ProductService,CategoryService,UserService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

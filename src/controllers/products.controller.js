@@ -4,24 +4,21 @@ const bcrypt = require("bcrypt");
 const CTRLS = {};
 
 CTRLS.getProducts = (req, res) => {
- 
-};
-
-CTRLS.getProduct = (req, res) => {
   
 };
 
-CTRLS.saveProduct = (req, res) => {
+CTRLS.getProduct = (req, res) => {};
 
+CTRLS.saveProduct = (req, res) => {
   if (!req.files) {
-    return res.json({msg: "No files where uploaded!"})
+    return res.json({ msg: "No files where uploaded!" });
   }
 
-  const image = req.files.name 
+  const image = req.files.name;
 
-  image.mv(`../../uploads/products/${image.name}`, (err)=>{
+  image.mv(`../../uploads/products/${image.name}`, (err) => {
     if (err) {
-      return res.status(500).send(err)
+      return res.status(500).send(err);
     }
 
     const product = new Product({
@@ -32,35 +29,29 @@ CTRLS.saveProduct = (req, res) => {
       price: req.body.price,
       stock: req.body.stock,
       image: image.name,
-      status: req.body.status
-    })
+      status: req.body.status,
+    });
 
-    console.log(product)
+    console.log(product);
 
-  product.save((err,newProduct)=>{
-    if (err) {
-      return res.status(401).json({
-        ok: false,
-        err
-      })
-    }
+    product.save((err, newProduct) => {
+      if (err) {
+        return res.status(401).json({
+          ok: false,
+          err,
+        });
+      }
 
-    res.status(201).json({
-      ok: true,
-      product: newProduct
-    })
-
-  })
-  })
-  
+      res.status(201).json({
+        ok: true,
+        product: newProduct,
+      });
+    });
+  });
 };
 
-CTRLS.updateProduct = (req, res) => {
-  
-};
+CTRLS.updateProduct = (req, res) => {};
 
-CTRLS.deleteProduct = (req, res) => {
-  
-};
+CTRLS.deleteProduct = (req, res) => {};
 
 module.exports = CTRLS;
