@@ -16,16 +16,17 @@
             <input type="text" name="excerpt" [(ngModel)]="productForm.excerpt" class="form-control" />
           </div>
         </div>
-        <div class="col-4">
-          <div class="form-group mb-3">
-            <label for="description">Body:</label>
-            <textarea name="description" [(ngModel)]="productForm.description" id="" class="form-control" cols="30" rows="10"></textarea>
-          </div>
-        </div>
+        
         <div class="col-4">
           <div class="form-group mb-3">
             <label for="price">Price:</label>
             <input type="text" name="price" [(ngModel)]="productForm.price" class="form-control" />
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group mb-3">
+            <label for="description">Body:</label>
+            <textarea name="description" [(ngModel)]="productForm.description" id="" class="form-control"></textarea>
           </div>
         </div>
         <div class="col-4">
@@ -38,7 +39,7 @@
         <div class="col-4">
           <div class="form-group mb-3">
             <label for="image">URL Image:</label>
-            <input type="file" name="image" [(ngModel)]="productForm.image" class="form-control" />
+            <input type="file" name="image" [(ngModel)]="productForm.image" (change)="loadImage($event)" class="form-control" />
           </div>
         </div>
         
@@ -82,21 +83,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let product of products; let i = index">
-              <th>{{i+1}}</th>
-              <td>{{product.name}}</td>
-              <td>{{product.excerpt}}</td>
-              <td>{{product.price}}</td>
-              <td>{{product.stock}}</td>
-              <td><img class="img-thumbnail" [src]="product.image" [alt]="product.name"></td>
-              <td>{{product.status}}</td>
-              <td>
-                <div class="btn-group">
-                  <button class="btn btn-warning">EDIT</button>
-                  <button class="btn btn-danger">REMOVE</button>
-                </div>
-              </td>
-            </tr>
+            
           </tbody>
         </table>
       </div>

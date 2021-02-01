@@ -5,10 +5,9 @@ import { ProductService } from 'src/app/services/product.service';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss']
+  styleUrls: ['./product.component.scss'],
 })
 export class ProductComponent implements OnInit {
-
   productForm: Product = {
     name: '',
     category: '',
@@ -17,34 +16,36 @@ export class ProductComponent implements OnInit {
     price: 0,
     stock: 0,
     image: '',
-    status: true
-  }
+    status: true,
+  };
 
-  
-  constructor(private _ps: ProductService) { }
+  image: File;
+
+  constructor(private _ps: ProductService) {}
 
   ngOnInit(): void {
-    this.listProduct()
+    this.listProduct();
   }
 
-  
+  loadImage(img: any) {
+    this.image = img.target.files[0];
+    console.log(this.image);
+  }
 
   addProduct() {
-    this._ps.saveProduct(this.productForm)
-      .subscribe(data=>{
+    this._ps.saveProduct(this.productForm, this.image).subscribe(
+      (data) => {
         if (!data.ok) {
-          alert("ERROR!!")
-        }else{
-          alert("Product saved successfully!")
+          alert('ERROR!!');
+        } else {
+          alert('Product saved successfully!');
         }
       },
-      err=>{
-        console.log(err)
-      })
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
-  listProduct() {
-    
-  }
-
+  listProduct() {}
 }
