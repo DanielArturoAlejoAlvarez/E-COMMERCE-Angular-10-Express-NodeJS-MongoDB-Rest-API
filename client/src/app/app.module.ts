@@ -10,9 +10,11 @@ import { AppComponent } from './app.component';
 import { UserComponent } from './components/user/user.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/auth/login/login.component';
+import { ProductComponent } from './components/product/product.component';
 
 import { AuthService } from './services/auth.service';
 import { LoginService } from './services/login.service';
+import { ProductService } from './services/product.service';
 import { UserService } from './services/user.service';
 import { AuthGuard } from './shared/guards/auth.guard';
 
@@ -21,7 +23,8 @@ import { AuthGuard } from './shared/guards/auth.guard';
     AppComponent,
     UserComponent,
     NavbarComponent,
-    LoginComponent    
+    LoginComponent,
+    ProductComponent    
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,7 @@ import { AuthGuard } from './shared/guards/auth.guard';
       }
     })
   ],
-  providers: [AuthService,LoginService,UserService,AuthGuard],
+  providers: [AuthService,LoginService,ProductService,UserService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
