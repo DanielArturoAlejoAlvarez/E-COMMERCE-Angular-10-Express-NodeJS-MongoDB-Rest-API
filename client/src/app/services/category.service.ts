@@ -8,18 +8,18 @@ import Category from '../models/Category';
 })
 export class CategoryService {
 
-  httpOptions = {
+  /*httpOptions = {
     headers: new HttpHeaders({
       'Authorization': localStorage.getItem("token")
     })
-  }
+  }*/
 
   constructor(private _http: HttpClient) { }
 
   API_URI = 'http://127.0.0.1:3000/api'
 
   getCategories(): Observable<any> {
-    return this._http.get<Category[]>(`${this.API_URI}/categories`, this.httpOptions)
+    return this._http.get<Category[]>(`${this.API_URI}/categories`)
   }
 
 }

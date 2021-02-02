@@ -1,8 +1,8 @@
-import { NumberValueAccessor } from "@angular/forms";
+import Category from "./Category";
 
 export default class Product {
-  id?: number;
-  category: String;
+  _id?: number|string;
+  category: {};
   name: String;
   excerpt: String;
   description: String;

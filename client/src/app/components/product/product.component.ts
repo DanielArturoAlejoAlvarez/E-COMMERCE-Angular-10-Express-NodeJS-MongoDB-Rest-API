@@ -11,7 +11,7 @@ import { ProductService } from 'src/app/services/product.service';
 export class ProductComponent implements OnInit {
   productForm: Product = {
     name: '',
-    category: '',
+    category: {},
     excerpt: '',
     description: '',
     price: 0,
@@ -22,6 +22,7 @@ export class ProductComponent implements OnInit {
 
   image: File;
 
+  products: []
   categories: []
 
   constructor(private _ps: ProductService, private _cs: CategoryService) {}
@@ -35,23 +36,22 @@ export class ProductComponent implements OnInit {
     this.image = img.target.files[0];
     console.log(this.image);
   }
-
   addProduct() {
-    this._ps.saveProduct(this.productForm, this.image).subscribe(
-      (data) => {
-        if (!data.ok) {
-          alert('ERROR!!');
-        } else {
-          alert('Product saved successfully!');
-        }
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+    //console.log(this.productForm)
+    //console.log(this.image)
+    
   }
 
-  listProduct() {}
+  listProduct() {
+    this._ps.getProducts()
+      .subscribe(data=>{
+        this.products = data 
+        console.log(data)
+      },
+      err=>{
+        console.log(err)
+      })
+  }
 
 
   listCategory() {

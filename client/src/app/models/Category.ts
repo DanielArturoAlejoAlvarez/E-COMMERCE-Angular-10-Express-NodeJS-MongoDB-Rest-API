@@ -1,5 +1,5 @@
 export default class Category {
-  id?: number;
+  _id?: number|string;
   name: String;
   status: Boolean;
 }

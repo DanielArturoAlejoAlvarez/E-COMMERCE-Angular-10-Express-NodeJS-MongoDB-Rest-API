@@ -1,10 +1,16 @@
 const Product = require("../models/Product");
-const bcrypt = require("bcrypt");
+const path = require("path");
 
 const CTRLS = {};
 
 CTRLS.getProducts = (req, res) => {
-  
+  Product.find({})
+    .sort({ createdAt: "DESC" })
+    .where({ status: true })
+    .populate("category")
+    .exec((err, products) => {
+      return res.json(products);
+    });
 };
 
 CTRLS.getProduct = (req, res) => {};
@@ -14,9 +20,9 @@ CTRLS.saveProduct = (req, res) => {
     return res.json({ msg: "No files where uploaded!" });
   }
 
-  const image = req.files.name;
+  const image = req.files.image;
 
-  image.mv(`../../uploads/products/${image.name}`, (err) => {
+  image.mv(`uploads/products/${image.name}`, (err) => {
     if (err) {
       return res.status(500).send(err);
     }
@@ -53,5 +59,7 @@ CTRLS.saveProduct = (req, res) => {
 CTRLS.updateProduct = (req, res) => {};
 
 CTRLS.deleteProduct = (req, res) => {};
+
+
 
 module.exports = CTRLS;

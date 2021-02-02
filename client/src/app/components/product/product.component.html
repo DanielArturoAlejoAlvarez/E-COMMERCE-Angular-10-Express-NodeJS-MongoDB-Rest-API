@@ -33,7 +33,7 @@
           <div class="form-group mb-3">
             <label for="category">Category:</label>
             <select name="category" [(ngModel)]="productForm.category" class="form-control">
-              <option [value]="category" *ngFor="let category of categories" >{{category.name}}</option>
+              <option *ngFor="let category of categories" [value]="category._id">{{category.name}}</option>
             </select>
           </div>
         </div>
@@ -83,6 +83,7 @@
               <th>ID</th>
               <th>NAME</th>
               <th>EXCERPT</th>
+              <th>BODY</th>
               <th>PRICE</th>
               <th>STOCK</th>
               <th>IMAGE</th>
@@ -91,7 +92,25 @@
             </tr>
           </thead>
           <tbody>
-            
+            <tr *ngFor="let product of products; let i = index">
+              <th>{{i+1}}</th>
+              <td>{{product.name}}</td>
+              <td>{{product.excerpt}}</td>
+              <td>{{product.description}}</td>
+              <td>{{product.price}}</td>
+              <td>{{product.stock}}</td>
+              <td>
+                <img src="http://127.0.0.1:3000/api/products/image/{{product.image}}" [alt]="product.name" class="img-fluid">
+              </td>
+
+              <td>{{product.status}}</td>
+              <td>
+                <div class="btn-group">
+                  <button class="btn btn-warning">EDIT</button>
+                  <button class="btn btn-danger">REMOVE</button>
+                </div>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>

@@ -1,7 +1,7 @@
 import { NumberValueAccessor } from "@angular/forms";
 
 export default class User {
-  id?: number;
+  _id?: number|string;
   displayName: String;
   email: String;
   username: String;
