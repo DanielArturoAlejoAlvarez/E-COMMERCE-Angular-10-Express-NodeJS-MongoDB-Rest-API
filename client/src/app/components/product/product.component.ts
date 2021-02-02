@@ -39,7 +39,31 @@ export class ProductComponent implements OnInit {
   addProduct() {
     //console.log(this.productForm)
     //console.log(this.image)
-    
+    this._ps.saveProduct(this.productForm, this.image).subscribe(
+      (data) => {
+        if (!data.ok) {
+          alert('ERROR!!');
+        } else {
+          console.log(data)
+          alert('Product saved successfully!');
+          this.productForm = {
+            name: '',
+            category: {},
+            excerpt: '',
+            description: '',
+            price: 0,
+            stock: 0,
+            image: '',
+            status: true,
+          }
+          this.listProduct()
+
+        }
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
   listProduct() {
