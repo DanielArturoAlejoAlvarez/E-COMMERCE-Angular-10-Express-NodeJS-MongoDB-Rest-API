@@ -60,6 +60,13 @@ CTRLS.updateProduct = (req, res) => {};
 
 CTRLS.deleteProduct = (req, res) => {};
 
-
+CTRLS.viewImage = (req, res) => {
+  const urlImage = path.join(
+    __dirname,
+    "./../../uploads/products",
+    req.params.img // /products/image/:img
+  );
+  return res.sendFile(urlImage);
+};
 
 module.exports = CTRLS;
