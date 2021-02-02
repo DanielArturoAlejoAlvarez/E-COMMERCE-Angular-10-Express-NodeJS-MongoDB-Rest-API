@@ -100,7 +100,7 @@
               <td>{{product.price}}</td>
               <td>{{product.stock}}</td>
               <td>
-                <img src="http://127.0.0.1:3000/api/products/image/{{product.image}}" [alt]="product.name" class="img-fluid">
+                <img src="http://127.0.0.1:3000/api/products/image/{{product.image}}?token={{token}}" [alt]="product.name" class="img-fluid">
               </td>
 
               <td>{{product.status}}</td>

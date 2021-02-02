@@ -22,6 +22,8 @@ export class ProductComponent implements OnInit {
 
   image: File;
 
+  token = localStorage.getItem('token')
+
   products: []
   categories: []
 
