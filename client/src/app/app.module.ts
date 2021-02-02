@@ -11,6 +11,8 @@ import { UserComponent } from './components/user/user.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { ProductComponent } from './components/product/product.component';
+import { OrderComponent } from './components/order/order.component';
+
 
 import { AuthService } from './services/auth.service';
 import { LoginService } from './services/login.service';
@@ -18,6 +20,7 @@ import { ProductService } from './services/product.service';
 import { UserService } from './services/user.service';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { CategoryService } from './services/category.service';
+import { OrderService } from './services/order.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,8 @@ import { CategoryService } from './services/category.service';
     UserComponent,
     NavbarComponent,
     LoginComponent,
-    ProductComponent    
+    ProductComponent,
+    OrderComponent    
   ],
   imports: [
     BrowserModule,
@@ -41,7 +45,7 @@ import { CategoryService } from './services/category.service';
       }
     })
   ],
-  providers: [AuthService,LoginService,ProductService,CategoryService,UserService,AuthGuard],
+  providers: [AuthService,LoginService,ProductService,CategoryService,OrderService,UserService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
