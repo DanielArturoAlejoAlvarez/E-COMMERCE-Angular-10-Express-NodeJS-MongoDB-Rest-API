@@ -1,4 +1,3 @@
-import { isNgTemplate } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ClientService } from 'src/app/services/client.service';
 import { OrderService } from 'src/app/services/order.service';
@@ -76,7 +75,31 @@ export class OrderComponent implements OnInit {
 
   
 
-  
+  addOrder() {
+    this._os.saveOrder(this.orderForm).subscribe(
+      (data) => {
+        if (!data.ok) {
+          alert('ERROR!!');
+        } else {
+          console.log(data);
+          alert('Order saved successfully!');
+          this.orderForm = {
+            payment: 0,
+            qty: 1,
+            product: '',
+            price: 0,
+            client: '',
+            orderItems: [],
+          };
+
+          this.listOrder();
+        }
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
 
   listOrder() {
     this._os.getOrders().subscribe(
