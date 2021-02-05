@@ -9,28 +9,7 @@ CTRLS.getClients = (req, res) => {
 };
 
 CTRLS.saveClient = (req, res) => {
-  const client = new Client({
-    displayName: req.body.displayName,
-    email: req.body.email,
-    phone: req.body.phone,
-    address: req.body.address
-  })
-
-  console.log(client)
-
-  client.save((err, newClient) => {
-    if (err) {
-      return res.status(401).json({
-        ok: false,
-        err,
-      });
-    }
-
-    res.status(201).json({
-      ok: true,
-      client: newClient,
-    });
-  });
+  
 
 
 };
