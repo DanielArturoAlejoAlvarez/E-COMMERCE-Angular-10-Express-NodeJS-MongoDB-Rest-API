@@ -11,7 +11,9 @@ export class OrderService {
 
   API_URI = 'http://127.0.0.1:3000/api'
 
-  
+  getOrders(): Observable<any> {
+    return this._http.get(`${this.API_URI}/orders`)
+  }
 
   saveOrder(newOrder): Observable<any> {
     return this._http.post(`${this.API_URI}/orders`, newOrder)
