@@ -1,1 +1,55 @@
 /* You can add global styles to this file, and also import other style files */
+@import url(http://fonts.googleapis.com/css?family=Bebas+Neue:100,300,400,600,700);
+
+body {
+  font-family: 'Bebas Neue',sans-serif;
+  font-size: 18px;
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+ul {
+  list-style: none;
+}
+
+label {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.important {
+  color: greenyellow;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.clearfix-big {
+  display: table;
+  padding: 4rem;
+}
+
+.clearfix-small {
+  display: table;
+  padding: 2rem;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  .flex {
+    display: block;
+  }
+
+}

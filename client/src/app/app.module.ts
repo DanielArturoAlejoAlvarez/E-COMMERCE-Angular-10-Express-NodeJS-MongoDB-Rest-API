@@ -21,6 +21,7 @@ import { UserService } from './services/user.service';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { CategoryService } from './services/category.service';
 import { OrderService } from './services/order.service';
+import { ClientService } from './services/client.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import { OrderService } from './services/order.service';
       }
     })
   ],
-  providers: [AuthService,LoginService,ProductService,CategoryService,OrderService,UserService,AuthGuard],
+  providers: [AuthService,LoginService,ClientService,ProductService,CategoryService,OrderService,UserService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

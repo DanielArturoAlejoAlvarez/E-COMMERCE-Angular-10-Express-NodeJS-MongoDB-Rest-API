@@ -18,12 +18,9 @@ export class UserService {
 
   API_URI = 'http://127.0.0.1:3000/api';
 
-
   getUsers(): Observable<any> {
     return this._http.get<User[]>(`${this.API_URI}/users`, this.httpOptions);
   }
-
-
 
   saveUser(newUser: User): Observable<any> {
     return this._http.post<User>(`${this.API_URI}/users`, newUser);

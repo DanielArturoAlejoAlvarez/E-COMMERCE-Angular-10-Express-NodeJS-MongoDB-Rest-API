@@ -12,29 +12,24 @@
         </div>
         <div class="col-4">
           <div class="form-group mb-3">
-            <label for="email">Email:</label>
+            <label for="email">Email: <span class="important">*</span></label>
             <input type="email" name="email" [(ngModel)]="userForm.email" class="form-control" />
           </div>
         </div>
         <div class="col-4">
           <div class="form-group mb-3">
-            <label for="username">Username:</label>
+            <label for="username">Username: <span class="important">*</span></label>
             <input type="text" name="username" [(ngModel)]="userForm.username" class="form-control" />
           </div>
         </div>
-        <div class="col-4">
+        <div class="col-6">
           <div class="form-group mb-3">
-            <label for="password">Password:</label>
+            <label for="password">Password: <span class="important">*</span></label>
             <input type="password" name="password" [(ngModel)]="userForm.password" class="form-control" />
           </div>
         </div>
-        <div class="col-4">
-          <div class="form-group mb-3">
-            <label for="avatar">Avatar:</label>
-            <input type="text" name="avatar" [(ngModel)]="userForm.avatar" class="form-control" />
-          </div>
-        </div>
-        <div class="col-4">
+        
+        <div class="col-6">
           <div class="form-group mb-3">
             <label for="role">Role:</label>
             <select name="role" [(ngModel)]="userForm.role" class="form-control">
@@ -53,10 +48,16 @@
             </select>
           </div>
         </div>
+        <div class="col-8">
+          <div class="form-group mb-3">
+            <label for="avatar">Avatar:</label>
+            <input type="text" name="avatar" [(ngModel)]="userForm.avatar" class="form-control" />
+          </div>
+        </div>
       
         <div class="col-12">
           <div class="form-group d-grid gap-2 mt-4">
-            <button (click)="addUser()" class="btn btn-primary btn-lg">SUBMIT</button>
+            <button (click)="addUser()" class="btn btn-primary btn-lg btn-block">SUBMIT</button>
           </div>
         </div>    
         
@@ -72,7 +73,7 @@
       <div class="row">  
         <table class="table table-striped table-hover table-bordered table-condensed">
           <thead>
-            <tr>
+            <tr class="table-danger">
               <th>ID</th>
               <th>NAME</th>
               <th>USER</th>
@@ -85,7 +86,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let user of users; let i = index">
-              <th>{{i+1}}</th>
+              <th class="bg-danger">{{i+1}}</th>
               <td>{{user.displayName}}</td>
               <td>{{user.email}}</td>
               <td>{{user.username}}</td>

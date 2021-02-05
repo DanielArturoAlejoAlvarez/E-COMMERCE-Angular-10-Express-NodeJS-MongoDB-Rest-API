@@ -6,7 +6,7 @@
       <div class="row">       
         <div class="col-4">
           <div class="form-group mb-3">
-            <label for="name">Name:</label>
+            <label for="name">Name: <span class="important">*</span></label>
             <input type="text" name="name" [(ngModel)]="productForm.name" class="form-control" />
           </div>
         </div>
@@ -19,7 +19,7 @@
         
         <div class="col-4">
           <div class="form-group mb-3">
-            <label for="price">Price:</label>
+            <label for="price">Price: <span class="important">*</span></label>
             <input type="text" name="price" [(ngModel)]="productForm.price" class="form-control" />
           </div>
         </div>
@@ -31,7 +31,7 @@
         </div>
         <div class="col-4">
           <div class="form-group mb-3">
-            <label for="category">Category:</label>
+            <label for="category">Category: <span class="important">*</span></label>
             <select name="category" [(ngModel)]="productForm.category" class="form-control">
               <option *ngFor="let category of categories" [value]="category._id">{{category.name}}</option>
             </select>
@@ -39,7 +39,7 @@
         </div>
         <div class="col-4">
           <div class="form-group mb-3">
-            <label for="stock">Stock:</label>
+            <label for="stock">Stock: <span class="important">*</span></label>
             <input type="text" name="stock" [(ngModel)]="productForm.stock" class="form-control" />
           </div>
         </div>
@@ -53,7 +53,7 @@
         
         <div class="col-4">
           <div class="form-group mb-3">
-            <label for="status">STATUS:</label>
+            <label for="status">STATUS: </label>
             <select name="status" [(ngModel)]="productForm.status" class="form-control">
               <option value="true">ON</option>
               <option value="false">OFF</option>
@@ -63,7 +63,7 @@
       
         <div class="col-12">
           <div class="form-group d-grid gap-2 mt-4">
-            <button (click)="addProduct()" class="btn btn-primary btn-lg">SUBMIT</button>
+            <button (click)="addProduct()" class="btn btn-primary btn-lg btn-block">SUBMIT</button>
           </div>
         </div>    
         
@@ -79,7 +79,7 @@
       <div class="row">  
         <table class="table table-striped table-hover table-bordered table-condensed">
           <thead>
-            <tr>
+            <tr class="table-danger">
               <th>ID</th>
               <th>NAME</th>
               <th>EXCERPT</th>
@@ -93,7 +93,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let product of products; let i = index">
-              <th>{{i+1}}</th>
+              <th class="bg-danger">{{i+1}}</th>
               <td>{{product.name}}</td>
               <td>{{product.excerpt}}</td>
               <td>{{product.description}}</td>
