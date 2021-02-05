@@ -14,5 +14,18 @@ export class AuthService {
     return !this._jwtHelper.isTokenExpired(token);
   }
 
-  
+  setUser(user): void {
+    const user_string = JSON.stringify(user);
+    localStorage.setItem('currentUser', user_string);
+  }
+
+  getCurrentUser() {
+    const user_string = localStorage.getItem('currentUser');
+    if (!isNullOrUndefined(user_string)) {
+      const user = JSON.parse(user_string);
+      return user;
+    } else {
+      return null;
+    }
+  }
 }
