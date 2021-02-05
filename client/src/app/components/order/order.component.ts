@@ -73,7 +73,14 @@ export class OrderComponent implements OnInit {
     this.orderForm.payment += Number(this.orderForm.price * this.orderForm.qty);
   }
 
-  
+  deleteItem(id: number | string) {
+    this.orderForm.orderItems = this.orderForm.orderItems.filter(
+      (item) => item.product_id !== id
+    );
+    this.orderForm.payment = this.orderForm.orderItems
+      .map((item) => item.subtotal)
+      .reduce((a, b) => a + b, 0);
+  }
 
   addOrder() {
     this._os.saveOrder(this.orderForm).subscribe(
