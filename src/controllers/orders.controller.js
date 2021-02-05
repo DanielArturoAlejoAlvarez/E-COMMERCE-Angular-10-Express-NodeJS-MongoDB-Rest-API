@@ -12,7 +12,35 @@ const getOrders = (req, res) => {
 };
 
 const saveOrder = (req, res) => {
-  
+  const body = req.body;
+
+  validateQty(body.orderItems, (resp) => {
+    if (!resp)
+      return res.status(401).json({
+        ok: false,
+        msg: "There are no products to save",
+      });
+
+    const order = new Order({
+      payment: body.payment,
+      client: body.client,
+      orderItems: resp,
+    });
+
+    order.save((err, newOrder) => {
+      if (err) {
+        return res.status(401).json({
+          ok: false,
+          err,
+        });
+      }
+
+      res.status(201).json({
+        ok: true,
+        order: newOrder,
+      });
+    });
+  });
 };
 
 const validateQty = async (products, cb) => {
