@@ -1,0 +1,126 @@
+
+<div class="container">
+  <div class="card mt-4">
+    <div class="card-header"><h2 class="text-center">ADD ORDER</h2></div>
+    <div class="card-body">
+      <div class="row">       
+        <div class="col-6">
+          <div class="form-group mb-3">
+            <label for="client">Client:</label>
+            <select name="client" [(ngModel)]="orderForm.client" class="form-control">
+              <option *ngFor="let client of clients" value="{{client._id}}">{{client.displayName}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group mb-3">
+            <label for="serial">Serial Number:</label>
+            <input type="text" name="serial" class="form-control" />
+          </div>
+        </div>
+        
+        <div class="col-4">
+          <div class="form-group mb-3">
+            <label for="product">Product:</label>
+            <select name="product" (change)="putPrice()" [(ngModel)]="orderForm.product" class="form-control">
+              <option *ngFor="let product of products" value="{{product._id}}-{{product.price}}-{{product.name}}">{{product.name}}</option>
+            </select>
+          </div>
+          <div class="form-group mb-3">
+            <label for="price">Price:</label>
+            <input type="text" name="price" [(ngModel)]="orderForm.price" class="form-control" disabled/>
+          </div>
+          <div class="form-group mb-3">
+            <label for="qty">QTY:</label>
+            <input type="number" name="qty" [(ngModel)]="orderForm.qty" class="form-control" min="1" />
+          </div>
+          <div class="form-group mb-3">
+            <button (click)="addToCart()" class="btn btn-warning btn-lg"><i class="fas fa-shopping-cart"></i> ADD TO CART</button>
+          </div>
+        </div>
+        <div class="col-8">
+          
+          <table class="table table-bordered table-striped table-hover table-condensed mt-4">
+            <thead>
+              <tr>  
+                <th>ITEM</th>              
+                <th>PRODUCT</th>
+                <th>PRICE</th>
+                <th>QTY</th>
+                <th>SUBTOTAL</th>
+                <th>&nbsp;</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of orderForm.orderItems; let i = index">
+                <th>{{i+1}}</th>
+                <td>{{item.product_name}}</td>
+                <td>{{item.price}}</td>
+                <td>{{item.qty}}</td>
+                <td><strong>$/. {{item.subtotal}}</strong></td>
+                <td>
+                  <button (click)="deleteItem(item.product_id)" class="btn btn-danger btn-sm"><i class="fas fa-times"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="4"><h4>TOTAL:</h4></td>
+                <td class="bg-danger"><h4>$/. {{orderForm.payment}}</h4></td>
+              </tr>
+            </tbody>
+           
+          </table>
+        
+        </div>
+        
+      
+      
+        <div class="col-12">
+          <div class="form-group d-grid gap-2 mt-4">
+            <button (click)="addOrder()" class="btn btn-success btn-lg btn-block">SAVE</button>
+          </div>
+        </div>    
+        
+      </div>
+    </div>
+  </div>
+  
+  <hr>
+  
+  <div class="card mt-4">
+    <div class="card-header"><h2 class="text-center">ORDER LIST</h2></div>
+    <div class="card-body">
+      <div class="row">  
+        <table class="table table-striped table-hover table-bordered table-condensed">
+          <thead>
+            <tr class="table-danger">
+              <th>ID</th>
+              <th>DATE</th>
+              <th>CLIENT</th>
+              <th>PRODUCTS</th>
+              <th>TOTAL</th>
+                            
+              <th>&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody>
+           <tr *ngFor="let order of orders; let i = index">
+             <th class="bg-danger">{{i+1}}</th>
+             <td><i class="fas fa-calendar-week"></i>  {{order.dateReg | date: 'fullDate'}} <i class="far fa-clock"></i>  {{order.dateReg | date: 'shortTime'}}</td>
+             <td>{{order.client.displayName}}</td>
+             
+             <td>
+              <ul *ngFor="let item of order.orderItems; let i = index">
+                <li><img width="125" class="img-fluid" src="http://127.0.0.1:3000/api/products/image/{{item.product.image}}?token={{token}}" alt="{{item.product.name}}">&nbsp;&nbsp;&nbsp;<h3>{{item.product.name}}&nbsp;&nbsp;<small class="text-warning">({{item.qty}})</small></h3></li>
+              </ul>
+             </td>
+             <td><h4>$/. {{order.payment}}</h4></td>
+             <td>
+               <button class="btn btn-info btn-lg"><i class="fas fa-print"></i> PRINT</button>
+             </td>
+           </tr> 
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
