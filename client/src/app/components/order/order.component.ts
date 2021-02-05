@@ -45,7 +45,34 @@ export class OrderComponent implements OnInit {
     this.orderForm.price = Number(data[1]);
   }
 
-  
+  addToCart() {
+    const data = this.orderForm.product.split('-');
+
+    //search position
+    const exist = this.orderForm.orderItems.findIndex(
+      (p) => p.product_id == data[0]
+    );
+    if (exist != -1) {
+      this.orderForm.orderItems[exist] = {
+        product_id: data[0],
+        product_name: data[2],
+        qty: Number(this.orderForm.orderItems[exist].qty + this.orderForm.qty),
+        price: data[1],
+        subtotal:
+          Number(this.orderForm.orderItems[exist].qty + this.orderForm.qty) *
+          this.orderForm.price,
+      };
+    } else {
+      this.orderForm.orderItems.push({
+        product_id: data[0],
+        product_name: data[2],
+        qty: this.orderForm.qty,
+        price: data[1],
+        subtotal: this.orderForm.price * this.orderForm.qty,
+      });
+    }
+    this.orderForm.payment += Number(this.orderForm.price * this.orderForm.qty);
+  }
 
   
 
