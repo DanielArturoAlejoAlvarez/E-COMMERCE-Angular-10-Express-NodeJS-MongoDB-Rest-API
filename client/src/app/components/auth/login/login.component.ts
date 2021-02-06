@@ -9,6 +9,8 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+ 
+
   loginForm = {
     username: '',
     password: '',
@@ -27,9 +29,7 @@ export class LoginComponent implements OnInit {
       (data) => {
         if (data.ok) {
           console.log(data);
-
           this._as.setUser(data.user);
-
           localStorage.setItem('token', data.token);
           this._router.navigate(['user']);
         } else {

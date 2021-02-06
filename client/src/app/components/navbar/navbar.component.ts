@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import User from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -8,12 +9,13 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
+
   user: User;
 
-  constructor(private _as: AuthService) {}
+  constructor(private _as: AuthService, private _router: Router) {}
 
   ngOnInit(): void {
-    this.user = this._as.getCurrentUser();
-    console.log(this.user);
-  }
+    this.user = this._as.getCurrentUser(); 
+  } 
+   
 }

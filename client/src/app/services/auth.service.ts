@@ -6,6 +6,8 @@ import { isNullOrUndefined } from 'util';
   providedIn: 'root',
 })
 export class AuthService {
+
+   
   constructor(private _jwtHelper: JwtHelperService) {}
 
   public isAuthenticated(): boolean {
@@ -28,4 +30,5 @@ export class AuthService {
       return null;
     }
   }
+
 }
