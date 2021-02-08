@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { ClientService } from 'src/app/services/client.service';
 import { OrderService } from 'src/app/services/order.service';
 import { ProductService } from 'src/app/services/product.service';
@@ -27,6 +28,7 @@ export class OrderComponent implements OnInit {
   };
 
   constructor(
+    private _toastr: ToastrService,
     private _os: OrderService,
     private _ps: ProductService,
     private _cs: ClientService
@@ -89,7 +91,8 @@ export class OrderComponent implements OnInit {
           alert('ERROR!!');
         } else {
           console.log(data);
-          alert('Order saved successfully!');
+          //alert('Order saved successfully!');
+          this._toastr.success('Order saved successfully!','SUCCESS:')
           this.orderForm = {
             payment: 0,
             qty: 1,
@@ -104,6 +107,7 @@ export class OrderComponent implements OnInit {
       },
       (err) => {
         console.log(err);
+        this._toastr.error(err, 'ERROR:')
       }
     );
   }

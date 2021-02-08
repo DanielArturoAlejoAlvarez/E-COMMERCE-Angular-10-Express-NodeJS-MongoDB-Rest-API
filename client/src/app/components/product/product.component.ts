@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import Product from 'src/app/models/Product';
 import { CategoryService } from 'src/app/services/category.service';
 import { ProductService } from 'src/app/services/product.service';
@@ -27,7 +28,7 @@ export class ProductComponent implements OnInit {
   products: [];
   categories: [];
 
-  constructor(private _ps: ProductService, private _cs: CategoryService) {}
+  constructor(private _toastr: ToastrService, private _ps: ProductService, private _cs: CategoryService) {}
 
   ngOnInit(): void {
     this.listCategory();
@@ -45,7 +46,8 @@ export class ProductComponent implements OnInit {
           alert('ERROR!!');
         } else {
           console.log(data);
-          alert('Product saved successfully!');
+          //alert('Product saved successfully!');
+          this._toastr.success('Product saved successfully!','SUCCESS:')
           this.productForm = {
             name: '',
             category: {},
@@ -61,6 +63,7 @@ export class ProductComponent implements OnInit {
       },
       (err) => {
         console.log(err);
+        this._toastr.error(err, 'ERROR:')
       }
     );
   }

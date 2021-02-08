@@ -27,7 +27,7 @@ export class UserComponent implements OnInit {
 
   users: [];
 
-  constructor(private _us: UserService) {}
+  constructor(private _toastr: ToastrService, private _us: UserService) {}
 
   ngOnInit() {
     this.listUser();
@@ -40,11 +40,13 @@ export class UserComponent implements OnInit {
         if (!data.ok) {
           alert('ERROR!!');
         } else {
-          alert('User saved successfully!');
+          //alert('User saved successfully!');
+          this._toastr.success('User saved successfully!','SUCCESS!')
         }
       },
       (err) => {
         console.log(err);
+        this._toastr.error(err, 'ERROR:')
       }
     );
   }
