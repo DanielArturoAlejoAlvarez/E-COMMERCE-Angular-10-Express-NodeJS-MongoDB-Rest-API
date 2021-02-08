@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
 import { JwtModule } from '@auth0/angular-jwt'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { ToastrModule } from 'ngx-toastr'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -44,6 +46,12 @@ import { ClientService } from './services/client.service';
           return localStorage.getItem('token');
         } 
       }
+    }),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
     })
   ],
   providers: [AuthService,LoginService,ClientService,ProductService,CategoryService,OrderService,UserService,AuthGuard],

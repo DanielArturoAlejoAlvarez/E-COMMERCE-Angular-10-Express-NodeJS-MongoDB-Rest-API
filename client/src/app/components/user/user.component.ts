@@ -1,15 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
+import {
+  FormControl,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import User from 'src/app/models/User';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss']
+  styleUrls: ['./user.component.scss'],
 })
 export class UserComponent implements OnInit {
-
   userForm: User = {
     displayName: '',
     email: '',
@@ -17,41 +22,42 @@ export class UserComponent implements OnInit {
     password: '',
     avatar: '',
     role: 'USER',
-    status: true
-  }
+    status: true,
+  };
 
-  users: []
-  
-  constructor(private _us: UserService) { }
+  users: [];
+
+  constructor(private _us: UserService) {}
 
   ngOnInit() {
-    this.listUser()
+    this.listUser();
   }
 
   addUser() {
-    console.log(this.userForm)
-    this._us.saveUser(this.userForm)
-      .subscribe(data=>{
+    console.log(this.userForm);
+    this._us.saveUser(this.userForm).subscribe(
+      (data) => {
         if (!data.ok) {
-          alert("ERROR!!")
-        }else{
-          alert("User saved successfully!")
+          alert('ERROR!!');
+        } else {
+          alert('User saved successfully!');
         }
       },
-      err=>{
-        console.log(err)
-      })
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
   listUser() {
-    this._us.getUsers()
-      .subscribe(data=>{
-        this.users = data
-        console.log(data)
+    this._us.getUsers().subscribe(
+      (data) => {
+        this.users = data;
+        console.log(data);
       },
-      err=>{
-        console.log(err)
-      })
+      (err) => {
+        console.log(err);
+      }
+    );
   }
-
 }

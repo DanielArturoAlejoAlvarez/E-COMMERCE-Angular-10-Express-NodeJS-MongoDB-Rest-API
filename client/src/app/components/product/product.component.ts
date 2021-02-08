@@ -22,15 +22,15 @@ export class ProductComponent implements OnInit {
 
   image: File;
 
-  token = localStorage.getItem('token')
+  token = localStorage.getItem('token');
 
-  products: []
-  categories: []
+  products: [];
+  categories: [];
 
   constructor(private _ps: ProductService, private _cs: CategoryService) {}
 
   ngOnInit(): void {
-    this.listCategory()
+    this.listCategory();
     this.listProduct();
   }
 
@@ -39,14 +39,12 @@ export class ProductComponent implements OnInit {
     console.log(this.image);
   }
   addProduct() {
-    //console.log(this.productForm)
-    //console.log(this.image)
     this._ps.saveProduct(this.productForm, this.image).subscribe(
       (data) => {
         if (!data.ok) {
           alert('ERROR!!');
         } else {
-          console.log(data)
+          console.log(data);
           alert('Product saved successfully!');
           this.productForm = {
             name: '',
@@ -57,9 +55,8 @@ export class ProductComponent implements OnInit {
             stock: 0,
             image: '',
             status: true,
-          }
-          this.listProduct()
-
+          };
+          this.listProduct();
         }
       },
       (err) => {
@@ -69,25 +66,26 @@ export class ProductComponent implements OnInit {
   }
 
   listProduct() {
-    this._ps.getProducts()
-      .subscribe(data=>{
-        this.products = data 
-        console.log(data)
+    this._ps.getProducts().subscribe(
+      (data) => {
+        this.products = data;
+        console.log(data);
       },
-      err=>{
-        console.log(err)
-      })
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
-
   listCategory() {
-    this._cs.getCategories()
-      .subscribe(data=>{
-        this.categories = data
-        console.log(data)
+    this._cs.getCategories().subscribe(
+      (data) => {
+        this.categories = data;
+        console.log(data);
       },
-      err=>{
-        console.log(err)
-      })
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 }

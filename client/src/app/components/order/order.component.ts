@@ -15,7 +15,7 @@ export class OrderComponent implements OnInit {
 
   orders: Array<any> = [];
 
-  token = localStorage.getItem('token')
+  token = localStorage.getItem('token');
 
   orderForm = {
     payment: 0,
@@ -111,7 +111,7 @@ export class OrderComponent implements OnInit {
   listOrder() {
     this._os.getOrders().subscribe(
       (data) => {
-        console.log(data)
+        console.log(data);
         this.orders = data;
       },
       (err) => {
